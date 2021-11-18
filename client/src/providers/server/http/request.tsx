@@ -6,6 +6,7 @@ export async function fetchWithRetry(
   dispatch: Dispatch,
   httpUrlRef: React.MutableRefObject<string>
 ) {
+  console.log("providers/server/http/request.tsx fetchWithRetry", httpUrlRef);
   dispatch({
     status: ConfigStatus.Fetching,
   });
@@ -24,6 +25,7 @@ export async function fetchWithRetry(
 }
 
 async function fetchInit(httpUrl: string): Promise<Action | "retry"> {
+  console.log("providers/server/http/request.tsx fetchInit", httpUrl);
   try {
     const body = JSON.stringify({});
     const response = await fetch(
@@ -36,6 +38,7 @@ async function fetchInit(httpUrl: string): Promise<Action | "retry"> {
       })
     );
     const data = await response.json();
+    console.log('response - data', data);
     if (!("clusterUrl" in data) || !("programId" in data)) {
       throw new Error("Received invalid response");
     }

@@ -74,6 +74,7 @@ export function HttpProvider({ children }: ApiProviderProps) {
 
   const { httpUrl } = useServer();
   const httpUrlRef = React.useRef(httpUrl);
+  console.log('HttpProvider', httpUrl);
   React.useEffect(() => {
     httpUrlRef.current = httpUrl;
     initConfig(dispatch, httpUrlRef);
@@ -82,6 +83,8 @@ export function HttpProvider({ children }: ApiProviderProps) {
   React.useEffect(() => {
     httpUrlRef.current = httpUrl;
   }, [httpUrl]);
+
+  console.log('HttpProvider', 'state', state, 'dispatch', dispatch, 'http', httpUrlRef);
 
   return (
     <StateContext.Provider value={state}>
@@ -104,6 +107,9 @@ export function useConfig() {
   if (!context) {
     throw new Error(`useConfig must be used within a ApiProvider`);
   }
+  // if (context.config) {
+  //   console.log('useConfig', context.config);
+  // }
   return context.config;
 }
 

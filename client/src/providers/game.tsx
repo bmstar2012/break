@@ -49,6 +49,8 @@ export function GameStateProvider({ children }: Props) {
     return "complete";
   }, [blockhash, config, socket, accountsState]);
 
+  console.log("GameStateContext", config, accountsState, status, loadingPhase);
+
   React.useEffect(() => {
     setGameStatus("loading");
     setCountdownStart(undefined);

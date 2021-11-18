@@ -105,6 +105,7 @@ function getServerUrl(server: Server, customUrl: string) {
   }
 }
 
+//return solana cluster server info.
 export function useServer() {
   const context = React.useContext(ServerContext);
   if (!context) {
